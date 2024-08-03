@@ -1,13 +1,14 @@
-#include <Action.h>
+#include "Action.h"
 
-NUM_ACTIONS = 4;
+#define NUM_ACTIONS = 4;
 
-std::vector<ActionType> getActions(Node &node) {
-    // check iff prevAction != bet
-    // bet iff 
-}
 
-Action(ActionType new_type, int unsigned new_amount) {
+Action::Action(ActionType new_type, int unsigned new_amount) {
     type = new_type;
     amount = new_amount;
+}
+
+Action::Action(){
+    type = ActionType::FOLD;
+    amount = 0;
 }

@@ -21,4 +21,4 @@ class Deck{
     uint8_t deal();
 };
 
-#endif;
+#endif
