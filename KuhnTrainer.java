@@ -68,12 +68,12 @@ public class KuhnTrainer {
             System.out.println(n);
     }
 
-    private double cfr(int[] cards, String history, double p0, double p1) {
+    private double cfr(int[] cards, String ``, double p0, double p1) {
         int plays = history.length();
         int player = plays % 2;
         int opponent = 1 - player;
         
-        // return payoff for terminal states
+        // return payoff for terminal states``
         if (plays > 1) {
             boolean terminalPass = history.charAt(plays - 1) == 'p';
             boolean doubleBet = history.substring(plays - 2, plays).equals("bb");
