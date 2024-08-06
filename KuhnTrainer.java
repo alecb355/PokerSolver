@@ -68,7 +68,7 @@ public class KuhnTrainer {
             System.out.println(n);
     }
 
-    private double cfr(int[] cards, String ``, double p0, double p1) {
+    private double cfr(int[] cards, String history, double p0, double p1) {
         int plays = history.length();
         int player = plays % 2;
         int opponent = 1 - player;
