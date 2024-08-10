@@ -4,8 +4,9 @@
 #include <vector>
 #include "Node.h"
 
+#define NUM_ACTIONS 4
+
 enum ActionType{FOLD, CHECK, CALL, BET};
-int NUM_ACTIONS;
 
 class Action{
     public:

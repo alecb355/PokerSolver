@@ -13,6 +13,8 @@ uint8_t Deck::card_to_rank(const uint8_t &card){
     return card%13; // 0-12 = 0-12, 13-25 = 0-12 ...
 }
 
+Card::Card(int r, int s): rank(r), suit(s) {}
+
 /*
     Node{
         hand
