@@ -12,5 +12,10 @@ int main(int argc, char** args){
     for(const Action &action: node.actions){
         std::cout<<"action type: "<<action.type<<"\n";
     }
+    for(int i = 0; i < node.actions.size(); ++i){
+        std::cout<<"strategy["<<i<<"] = "<<node.strategy[i]<<"\n";
+        std::cout<<"strategy_sum["<<i<<"] = "<<node.strategy_sum[i]<<"\n";
+        std::cout<<"regret_sum["<<i<<"] = "<<node.regret_sum[i]<<"\n";
+    }
     return 0;
 }
