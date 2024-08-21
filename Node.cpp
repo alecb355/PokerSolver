@@ -3,7 +3,7 @@
 #include <utility>
 #include <iostream>
 
- Node::Node(std::vector<Card> new_hand, int new_curr_player, int new_p1_stack, int new_p2_stack, int new_num_bets, int new_pot_size, Action new_prev_action){
+ Node::Node(std::vector<Card> new_hand, int new_curr_player, int new_p1_stack, int new_p2_stack, int new_num_bets, int new_pot_size, Action new_prev_action, Card* new_turn, Card* new_river){
     if (new_prev_action.type != ActionType::BET){
         actions.push_back(Action(ActionType::CHECK, 0));
     }
@@ -24,6 +24,22 @@
         strategy.push_back(initial_val);
         strategy_sum.push_back(0);
         regret_sum.push_back(0);
+    }
+    if(new_turn){
+        turn.rank = new_turn->rank;
+        turn.suit = new_turn->suit;
+    }
+    else{
+        turn.rank = 15;
+        turn.suit = 3;
+    }
+    if(new_river){
+        river.rank = new_river->rank;
+        river.suit = new_river->suit;
+    }
+     else{
+        river.rank = 15;
+        river.suit = 3;
     }
     // do we need to add the strategy values into the strategy sum vector
     hand = new_hand;
