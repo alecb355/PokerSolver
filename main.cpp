@@ -38,46 +38,6 @@ void initialize_program(char *flop){
     hero_range[1][1] = 1; //aks
     hero_range[2][0] = 1; //ako
 
-    std::vector<uint8_t> rank_count(13,0);
-    //std::vector<std::vector<std::vector<uint8_t>>> suits_spanned(13, std::vector<uint8_t>(13, std::vector<uint8_t>(4,0)));
-    for (int i = 0; i < 3; i++) {
-        rank_count[deck.board[i].rank]++;
-    }
-
-    int hero_combos = 0;
-    for(int k; k < hero_range.size(); k++) {
-        uint8_t i = hero_range[k][0];
-        uint8_t j = hero_range[k][1];
-        std::vector<uint8_t> suits_spanned(4,0); //vector of suits spanned by cards of rank i or j on flop
-        uint8_t num_suits_spanned = 0;
-
-        if (i==j){ //combos of AA is #A left choose 2. probably fastest to do this using if statements
-            if (rank_count[i] == 0) combos_left[i][j] = 6;
-            else if (rank_count[i] == 1) combos_left[i][j] = 3;
-            else if (rank_count[i] == 2) combos_left[i][j] = 1;
-            else combos_left[i][j] = 0;
-        } else {
-            for (Card c : deck.board){ //set suits spanned
-                if (c.rank == i || c.rank == j) {
-                    if (suits_spanned[c.suit] == 0) num_suits_spanned++; //increment if it's a new suit
-                    suits_spanned[c.suit] = 1;
-                }
-            }
-
-            if (j>i){ //above diagonal, ie suited
-                combos_left[i][j] = 4 - num_suits_spanned;
-            } else { //offsuit
-                combos_left[i][j] = (4-rank_count[i])*(4-rank_count[j]) + num_suits_spanned - 4;
-            }
-        }
-
-        hero_combos += combos_left[i][j]; //increment total count of combos for hero
-    }
-
-    //now we want to select hero's specific combo
-    //this is fine on each game loop if we just flatten the matrix now.
-    //the problem is that we will have to update villain's matrix and then flatten it each time.
-
     //OTHER WAY OF DOING IT HERE:
     //first we want to create a vector for all hero exact combos (eg Ah5h) (resp. villain)
     for (int k = 0; k < hero_range.size(); k++) { // (11,12) (12,12) (12,11)
