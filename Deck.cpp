@@ -43,6 +43,10 @@ Card::Card(): rank(15), suit(3) {}
 
 Card::Card(int r, int s): rank(r), suit(s) {}
 
+bool Card::operator==(const Card& rhs) const{
+    return (rank == rhs.rank && suit == rhs.suit);
+}
+
 /*
     Node{
         hand

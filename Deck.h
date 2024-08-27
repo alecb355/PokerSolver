@@ -18,6 +18,8 @@ class Card{
     unsigned int suit: 2;
     Card();
     Card(int r, int s);
+    
+    bool operator==(const Card&) const;
 };
 
 class Deck{
