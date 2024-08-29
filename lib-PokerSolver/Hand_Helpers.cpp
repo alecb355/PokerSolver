@@ -1,6 +1,6 @@
+#include "Hand_Helpers.h"
 #include <vector>
 #include <inttypes.h>
-#include "Deck.h"
 #include <cassert>
 #include <algorithm>
 #include <iostream>
@@ -29,11 +29,6 @@
 */
 bool compareCard(const Card &card1, const Card &card2){
     return card1.rank > card2.rank;
-}
-
-
-void handle_winner(const int &pot_size, int &stack_size){
-    stack_size += pot_size;
 }
 
 // returns hand (only returns ranks, not suits)
@@ -267,6 +262,22 @@ void print_best_hand(std::vector<uint8_t> best_hand){
         else if(best_hand[i] == 10) std::cout<<"Q ";
         else if(best_hand[i] == 11) std::cout<<"K ";
         else if(best_hand[i] == 12) std::cout<<"A ";
+    }
+    std::cout<<"\n";
+}
+
+void print_hand(std::vector<Card> &hand){
+    for(const auto &c: hand){
+        if(c.rank < 9) std::cout<<c.rank+2<<"";
+        else if(c.rank == 9) std::cout<<"J";
+        else if(c.rank == 10) std::cout<<"Q";
+        else if(c.rank == 11) std::cout<<"K";
+        else if(c.rank == 12) std::cout<<"A";
+        else std::cout<<"??: "<<c.rank;
+        if(c.suit == 0) std::cout<<"c ";
+        else if(c.suit == 1) std::cout<<"d ";
+        else if(c.suit == 2) std::cout<<"h ";
+        else if(c.suit == 3) std::cout<<"s ";
     }
     std::cout<<"\n";
 }

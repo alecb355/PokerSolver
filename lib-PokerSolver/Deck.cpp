@@ -1,25 +1,25 @@
 #include "Deck.h"
 #include <cassert>
+#include <iostream>
 
 Deck::Deck(){
     deck.resize(52, 0);
     board.resize(5);
+    turn_distribution = new std::uniform_int_distribution<uint8_t>(0, 44); // 0-51 original, -3 = 48, -4 = 44
+    river_distribution = new std::uniform_int_distribution<uint8_t>(0, 43);
 }
 
 void Deck::add_flop(char* flop){
-    assert(sizeof(flop) == 6); // example flop input: AdTc4s which has size 6
+    // std::cout<<"FLOP SIZE: "<<sizeof(flop)<<"\n";
+    // std::cout<<flop[6]<<" "<<flop[7]<<"\n";
+    // assert(sizeof(flop) == 6); // example flop input: AdTc4s which has size 6
     int rank = 0, suit = 0;
     int board_idx = 0;
     for(int i = 0; i < 5; i += 2, board_idx++){
         char r = flop[i];
         char s = flop[i+1];
-        // parse rank
-        if(r == 'A') rank = 13; // ranks are like this for indexing purposes
-        else if(r == 'K') rank = 12;
-        else if(r == 'Q') rank = 11;
-        else if(r == 'J') rank =10;
-        else if(r == 'T') rank = 9;
-        else rank = (r - '0' - 1); // '2' - '0' = 2, but deuce is 1 here (for indexing purposes)
+        rank = parse_rank(r) + 1; // ranks are like this for indexing purposes
+         // '2' - '0' = 2, but deuce is 1 here (for indexing purposes)
         // parse suit
         if(s == 'c') suit = 0;
         else if(s == 'd') suit = 1;
@@ -29,6 +29,15 @@ void Deck::add_flop(char* flop){
         board[board_idx].rank = rank - 1;
         board[board_idx].suit = suit;
     }
+    std::cout<<"exiting add_flop\n";
+}
+uint8_t parse_rank(const char &r){
+    if(r == 'A') return 12;
+    else if(r == 'K') return 11;
+    else if(r == 'Q') return 10;
+    else if(r == 'J') return 9;
+    else if(r == 'T') return 8;
+    else return (r - '0' - 2);
 }
 
 uint8_t Deck::card_to_suit(const uint8_t &card){
@@ -47,6 +56,10 @@ bool Card::operator==(const Card& rhs) const{
     return (rank == rhs.rank && suit == rhs.suit);
 }
 
+Deck::~Deck(){
+    delete turn_distribution;
+    delete river_distribution;
+}
 /*
     Node{
         hand

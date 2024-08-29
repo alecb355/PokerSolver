@@ -1,7 +1,7 @@
-#include "Node.cpp"
-#include "Hand.cpp"
-#include "Action.cpp"
-#include "Deck.cpp"
+#include "../lib-PokerSolver/Action.h"
+#include "../lib-PokerSolver/Game.h"
+#include "../lib-PokerSolver/Player.h"
+#include "../lib-PokerSolver/Hand_Helpers.h"
 #include <utility>
 #include <iostream>
 #include <inttypes.h>

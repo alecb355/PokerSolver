@@ -1,11 +1,11 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <vector>
+#include "Deck.h"
 #include "Action.h"
+#include <vector>
 #include <utility>
 #include <inttypes.h>
-#include "Deck.h"
 
 class Node{
     public:

@@ -2,7 +2,6 @@
 #define ACTION_H
 
 #include <vector>
-#include "Node.h"
 
 #define NUM_ACTIONS 4
 
