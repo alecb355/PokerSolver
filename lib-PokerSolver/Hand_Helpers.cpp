@@ -266,18 +266,22 @@ void print_best_hand(std::vector<uint8_t> best_hand){
     std::cout<<"\n";
 }
 
+void print_card(const Card &c){
+    if(c.rank < 9) std::cout<<c.rank+2<<"";
+    else if(c.rank == 9) std::cout<<"J";
+    else if(c.rank == 10) std::cout<<"Q";
+    else if(c.rank == 11) std::cout<<"K";
+    else if(c.rank == 12) std::cout<<"A";
+    else std::cout<<"??: "<<c.rank;
+    if(c.suit == 0) std::cout<<"c ";
+    else if(c.suit == 1) std::cout<<"d ";
+    else if(c.suit == 2) std::cout<<"h ";
+    else if(c.suit == 3) std::cout<<"s ";
+}
+
 void print_hand(std::vector<Card> &hand){
     for(const auto &c: hand){
-        if(c.rank < 9) std::cout<<c.rank+2<<"";
-        else if(c.rank == 9) std::cout<<"J";
-        else if(c.rank == 10) std::cout<<"Q";
-        else if(c.rank == 11) std::cout<<"K";
-        else if(c.rank == 12) std::cout<<"A";
-        else std::cout<<"??: "<<c.rank;
-        if(c.suit == 0) std::cout<<"c ";
-        else if(c.suit == 1) std::cout<<"d ";
-        else if(c.suit == 2) std::cout<<"h ";
-        else if(c.suit == 3) std::cout<<"s ";
+        print_card(c);
     }
     std::cout<<"\n";
 }

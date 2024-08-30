@@ -16,6 +16,8 @@ uint8_t compare_hands(std::vector<uint8_t> &hand1, uint8_t &hand1_ranking, std::
 
 void print_best_hand(std::vector<uint8_t> best_hand);
 
+void print_card(const Card &c);
+
 void print_hand(std::vector<Card> &hand);
 
 #endif

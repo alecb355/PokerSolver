@@ -3,10 +3,9 @@
 #include <iostream>
 
 Deck::Deck(){
-    deck.resize(52, 0);
     board.resize(5);
-    turn_distribution = new std::uniform_int_distribution<uint8_t>(0, 44); // 0-51 original, -3 = 48, -4 = 44
-    river_distribution = new std::uniform_int_distribution<uint8_t>(0, 43);
+    dealt_cards.resize(9, 52);
+    deck_distribution = new std::uniform_int_distribution<uint8_t>(0, 51);
 }
 
 void Deck::add_flop(char* flop){
@@ -18,15 +17,15 @@ void Deck::add_flop(char* flop){
     for(int i = 0; i < 5; i += 2, board_idx++){
         char r = flop[i];
         char s = flop[i+1];
-        rank = parse_rank(r) + 1; // ranks are like this for indexing purposes
+        rank = parse_rank(r); // ranks are like this for indexing purposes
          // '2' - '0' = 2, but deuce is 1 here (for indexing purposes)
         // parse suit
         if(s == 'c') suit = 0;
         else if(s == 'd') suit = 1;
         else if(s == 'h') suit = 2;
         else suit = 3; // if we get weird value for suit gg
-        deck[(rank * (suit + 1) - 1)] = 1;
-        board[board_idx].rank = rank - 1;
+        dealt_cards[board_idx] = (rank + (13 * (suit)));
+        board[board_idx].rank = rank;
         board[board_idx].suit = suit;
     }
     std::cout<<"exiting add_flop\n";
@@ -40,12 +39,31 @@ uint8_t parse_rank(const char &r){
     else return (r - '0' - 2);
 }
 
-uint8_t Deck::card_to_suit(const uint8_t &card){
-    return card/13;  // 0-12 = 0, 13-25 = 1 ...
+uint8_t card_to_int(const Card &c){
+    return c.rank + (13 * (c.suit)); 
 }
 
-uint8_t Deck::card_to_rank(const uint8_t &card){
-    return card%13; // 0-12 = 0-12, 13-25 = 0-12 ...
+Card int_to_card(const uint8_t &val){
+    int rank = val % 13;
+    int suit = val / 13;
+    return Card(rank, suit);
+}
+
+Card Deck::deal_card(const int &dealt_idx){
+    while (true) {
+        uint8_t temp = (*(deck_distribution))(rng);
+        bool is_valid = true;
+        for(const uint8_t &val: dealt_cards){
+            if(val == temp){
+                is_valid = false;
+                break;
+            }
+        }
+        if(is_valid){
+            dealt_cards[dealt_idx] = temp;
+            return int_to_card(temp);
+        }
+    }
 }
 
 Card::Card(): rank(15), suit(3) {}
@@ -57,8 +75,7 @@ bool Card::operator==(const Card& rhs) const{
 }
 
 Deck::~Deck(){
-    delete turn_distribution;
-    delete river_distribution;
+    delete deck_distribution;
 }
 /*
     Node{

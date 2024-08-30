@@ -32,6 +32,15 @@ int main(int argc, char** args){
     Game game(&deck, &hero, &villain);
     std::cout<<"Hero's hand: ";
     print_hand(hero.hand);
+    std::cout<<"random numbers: ";
+    for(int i = 0; i < 10; ++i){
+        int temp = hero.player_rng(rng);
+        std::cout<<temp<<" ";
+    }
+    // hero.hand = hero.possible_hands[hero.player_rng(rng)];
+    // print_hand(hero.hand);
+    // hero.hand = hero.possible_hands[hero.player_rng(rng)];
+    // print_hand(hero.hand);
     std::cout<<"Villain's hand: ";
     print_hand(villain.hand);
 }
