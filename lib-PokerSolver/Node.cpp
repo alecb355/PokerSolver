@@ -42,9 +42,23 @@
     }
     // do we need to add the strategy values into the strategy sum vector
     hand = new_hand;
-    std::cout<<hand[0].rank<<" "<<hand[0].suit<<"\n";
     p1_stack = new_p1_stack;
     p2_stack = new_p2_stack;
     pot_size = new_pot_size;
     prev_action = new_prev_action;
+}
+
+void Node::get_strategy(const double &realization_weight){
+    double normalizingSum = 0;
+    for (int a = 0; a < NUM_ACTIONS; a++) { // strategy[a] = max(regretSum[a],0); normalizingSum = sum(strategy)
+        strategy[a] = regret_sum[a] > 0 ? regret_sum[a] : 0;
+        normalizingSum += strategy[a];
+    }
+    for (int a = 0; a < NUM_ACTIONS; a++) { // normalize strategy vector; strategySum += realizationWeight*strategy
+        if (normalizingSum > 0)
+            strategy[a] /= normalizingSum;
+        else
+            strategy[a] = 1.0 / NUM_ACTIONS;
+        strategy_sum[a] += realization_weight * strategy[a];
+    }
 }

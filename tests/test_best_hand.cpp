@@ -42,7 +42,7 @@ void test_straight_wheel(){
     std::cout<<"HAND RANKING: "<<hand_ranking<<"\n";
 }
 
-int main(int argc, char** args){
+int main(int argc, char** argv){
     // test_quad_one();
     test_straight_wheel();
 

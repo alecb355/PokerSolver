@@ -1,3 +1,4 @@
+// Code was taken from a paper that implemented CFR for Kuhn Poker, so we are using this file just to understand CFR
 import java.util.Arrays;
 import java.util.Random;
 import java.util.TreeMap;

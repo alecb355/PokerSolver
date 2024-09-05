@@ -8,90 +8,16 @@
 
 #define CARDS_DEALT 6
 
-; // distributions[0] == [0, 48], [1] = [0, 47], ..
 
-Deck deck;
-
-/*
-    TODO:
-        -redesign whole structure
-            -Game class
-                -deck
-                -board
-                -players
-                    -hand
-                    -stacks
-                    -strategies
-                    -ranges
-*/
-
-void initialize_program(char *flop){
-    deck.add_flop(flop);
-    // for(int i = 0; i < CARDS_DEALT; ++i){
-    //     distributions.push_back(std::uniform_int_distribution<uint8_t>(0, 48 - i));
-    // }
-}
-
-void game_cleanup(){
-    /*
-        - reset last 2 cards from board[] <- IS THIS NECESSARY???
-        - reset deck to just have flop inputted
-        - reset range probilities
-    */
-}
-
-/* 
-    51
-    49
-    49
-
-
-
-*/
-
-void initialize_game(){
-    // std::uniform_int_distribution<uint8_t> balls(0, 51);
-    // // std::vector<std::vector<std::string> > range = {{"AA", 5}};
-    // std::vector<uint8_t> dealt(CARDS_DEALT, 52); // 52 is greater than any possible number received
-    // for(int i = 0; i < CARDS_DEALT; ++i){
-    //     uint8_t rand = distributions[i](rng);
-    //     if(deck.deck[rand]){
-    //         int j = 52;
-    //         while(deck.deck[--j]);
-            
-    //     }
-    // }
-
-}
-void cfr(Node* node, std::vector<Card> &hero_hand, std::vector<Card> &villain_hand, std::vector<Card> &board, double hero_reach, double villain_reach, int street){
-    for(const auto &action: node->actions){
-
-    }
-}
-
-int main(int argc, char** args){
-    /*
-        initialize()
-            -randomize hero and villain hands, turn, river
-        hero_hand
-        villain_hand
-        board
-        Cfr()
-    */
+int main(int argc, char** argv){
+    // Change lines below to modify player ranges
+    std::string hero_range = "AA, AKo, AKs, JTo, KK, KQs";
+    std::string villain_range = "AA, AKo, AKs, JTo, KK, KQs";
+    Player hero(hero_range);
+    Player villain(villain_range);
+    Deck deck;
+    deck.add_flop(argv[2]);
+    hero.add_combos(&deck);
     
     return 0;
-}// [AA=3, AKs=3, AKo=9, KK=6, QQ=3] flop=QdKdAd
-// AA = 0.04 AK = 0.09
-// 0.04, 0.13 0.12
-/*
-    A K Q
-  A  
-  k
-  Q
-
-    ACTION (DEAL)
-    
-    Node.actions: (FOLD, RAISE, DEAL)
-    node.children (null, new Node, NodeJh, Node Ks, Node Ad, )
-
-*/
+}

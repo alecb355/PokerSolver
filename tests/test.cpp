@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-int main(int argc, char** args){
+int main(int argc, char** argv){
     std::string range = "AA, AKo, AKs, JTo, KK, KQs";
     Player hero(range);
     std::cout<<"RANGE: "<<"\n";

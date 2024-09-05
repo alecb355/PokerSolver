@@ -21,7 +21,6 @@ Game::Game(Deck* d, Player* h, Player* v){ // should deal all cards
     turn = deck->deal_card(7);
     river = deck->deal_card(8);
     // everything is set
-
 };
 
 Game::~Game(){
@@ -33,5 +32,9 @@ Game::~Game(){
    for(uint8_t &val: deck->dealt_cards){
         val = 52;
    }
+}
 
+void Game::run(){
+    // ranges are calculated, hands,turn, river all dealt
+    
 }
