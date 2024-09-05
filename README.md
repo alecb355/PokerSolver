@@ -14,7 +14,7 @@ Some of what we implemented could have just been usages of libraries, but I want
 The algorithm we are using is Monte Carlo Counterfactual Regret Minimization
 ## Usage
 
-### Currently not fully implemented, but eventially:
+### Currently not fully implemented, but eventually:
 
 Navigate to /exec-PokerSolver (or tests if you want to run tests) and run 'make.' Run the executable with the flop as an arg. Example:
 ```bash
