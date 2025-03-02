@@ -16,6 +16,7 @@ Player::Player(std::string range_str){
         else if(range_str[i+2] == 'o') range.push_back({rank_2, rank_1});
     }
 }
+
 void Player::add_combos(Deck* deck){
     // TODO: SHOULD POSSIBLE_HANDS BE MADE UP BY POINTERS SO WE ARENT CONSTANTLY CREATING AND DELETING HANDS AND CREATING COPIES TO PUSH BACK INTO VECTOR?
     for (const auto &range_entry: range) { // (11,12) (12,12) (12,11)

@@ -16,3 +16,5 @@ class Action{
 };
 
 #endif
+
+// node calculation upper bound: 104 actions, 47 cards for turn, 46 cards for river
