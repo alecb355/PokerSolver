@@ -44,12 +44,25 @@
 */
 class Node{
     public:
-    // for the vectors, 0 corresponds to FOLD, 1 corresponds to CHECK/CALL, 2-x correspond to all raises possible
+    // for the vectors, idx 0 corresponds to FOLD, 1 corresponds to CHECK/CALL, 2-x correspond to all raises possible
     std::vector<double> regret_sum;
     std::vector<double> strategy;
     std::vector<double> strategy_sum;
     Node* check_call_node; // child node for either check or call depending on what is available (this should lead to chance node)
-    std::vector<Node*> raise_nodes;
+    std::vector<Node*> raise_nodes; // maybe of size 7
+    /*
+        Following groupings (percentage of pot)
+            -getting rid of 0-25 percent because that "should" never be optimal (gto min is 33% usually i think but lets start at 25 in case)
+            
+        25-35 (10)
+        35-48  (13)
+        48-64   (16)
+        64-83   (19)
+        83-105  (22)
+        105-150 (45)
+        170-max (rest)
+    */
+    int num_valid_actions;
     // std::vector<Card> hand; // is this necessary
     // Card turn; // is this necessary
     // Card river; // is this necessary
@@ -57,8 +70,8 @@ class Node{
     // std::vector<Node*> children;
     // int p1_stack, p2_stack, num_bets, pot_size; // is this necessary
     // Action prev_action; // is this necessary
-    Node(int num_valid_actions);
-    void get_strategy(const double &realization_weight);
+    Node();
+    Action get_action(const double &realization_weight);
 };
 
 #endif

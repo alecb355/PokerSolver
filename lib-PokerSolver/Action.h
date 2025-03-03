@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#define NUM_ACTIONS 4
+#define NUM_ACTIONS 9 // fold, check/call, 7 grouped raise sizes
 
 enum ActionType{FOLD, CHECK, CALL, BET};
 

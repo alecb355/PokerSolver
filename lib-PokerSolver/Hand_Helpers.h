@@ -8,7 +8,7 @@
 #include <algorithm>
 
 
-bool compareCard(const Card &card1, const Card &card2);
+bool compare_card(const Card &card1, const Card &card2);
 
 std::vector<uint8_t> find_best_hand(const std::vector<Card> &board, std::vector<Card> &hand, int &hand_ranking);
 

@@ -5,8 +5,6 @@ Game::Game(Deck* d, Player* h, Player* v){ // should deal all cards
     hero = h;
     villain = v;
     pot = 0.0;
-    // hero->add_combos(deck);
-    // villain->add_combos(deck);
     // deal hands
     hero->hand = hero->possible_hands[hero->player_rng(rng)];
     deck->dealt_cards[3] = card_to_int(hero->hand[0]);
@@ -30,8 +28,8 @@ Game::~Game(){
     /*
         re add cards to deck and clear player hands, as well as turn and river
     */
-   hero->hand.clear();
-   villain->hand.clear();
+//    hero->hand.clear();
+//    villain->hand.clear();
    for(uint8_t &val: deck->dealt_cards){
         val = 52;
    }

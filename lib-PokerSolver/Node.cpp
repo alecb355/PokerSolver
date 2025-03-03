@@ -2,7 +2,7 @@
 #include <utility>
 #include <iostream>
 
- Node::Node(int num_valid_actions){
+ Node::Node(){
     // if (new_prev_action.type != ActionType::BET){
     //     actions.push_back(Action(ActionType::CHECK, 0));
     // }
@@ -18,7 +18,7 @@
     //         }
     //     }
     // }
-    double initial_val = 1.0/(double)num_valid_actions; // TODO: change this to the actual number of possible actions
+    double initial_val = 1.0/(double)NUM_ACTIONS; // TODO: change this to the actual number of possible actions
     for(int i = 0; i < NUM_ACTIONS; ++i){
         strategy.push_back(initial_val);
         strategy_sum.push_back(0);
@@ -48,17 +48,19 @@
     // prev_action = new_prev_action;
 }
 
-void Node::get_strategy(const double &realization_weight){
-    double normalizingSum = 0;
+Action Node::get_action(const double &realization_weight){
+    double normalizing_sum = 0;
     for (int a = 0; a < NUM_ACTIONS; a++) { // strategy[a] = max(regretSum[a],0); normalizingSum = sum(strategy)
         strategy[a] = regret_sum[a] > 0 ? regret_sum[a] : 0;
-        normalizingSum += strategy[a];
+        normalizing_sum += strategy[a];
     }
     for (int a = 0; a < NUM_ACTIONS; a++) { // normalize strategy vector; strategySum += realizationWeight*strategy
-        if (normalizingSum > 0)
-            strategy[a] /= normalizingSum;
+        if (normalizing_sum > 0)
+            strategy[a] /= normalizing_sum;
         else
             strategy[a] = 1.0 / NUM_ACTIONS;
         strategy_sum[a] += realization_weight * strategy[a];
     }
+    Action chosen_action; // TODO: choose the actual action
+    return chosen_action;
 }

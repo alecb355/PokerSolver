@@ -27,7 +27,7 @@
     AAQQK
 
 */
-bool compareCard(const Card &card1, const Card &card2){
+bool compare_card(const Card &card1, const Card &card2){
     return card1.rank > card2.rank;
 }
 
@@ -40,7 +40,7 @@ std::vector<uint8_t> find_best_hand(const std::vector<Card> &board, std::vector<
     for(const auto &card: board){
         hand.push_back(card);
     }
-    sort(hand.begin(), hand.end(), compareCard);
+    sort(hand.begin(), hand.end(), compare_card);
     std::cout<<"--SORTED HAND--\n";
     for(const auto &card: hand){
         std::cout<<"Card with rank: " << card.rank << ", suit: " << card.suit << "\n";

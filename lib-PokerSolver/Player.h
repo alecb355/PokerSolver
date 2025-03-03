@@ -15,8 +15,7 @@ class Player{
     std::vector<std::vector<Card>> possible_hands;
     std::vector<std::vector<uint8_t>> range;
     std::uniform_int_distribution<int> player_rng;
-    std::unordered_map<int, Node*> roots; // roots of all trees
-    Node* current_node;
+    Node* current_node; // maybe not necessary
     // add strategies here
     Player(std::string range_str);
     void add_combos(Deck* deck);

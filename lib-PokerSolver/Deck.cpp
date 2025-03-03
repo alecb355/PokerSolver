@@ -51,17 +51,17 @@ Card int_to_card(const uint8_t &val){
 
 Card Deck::deal_card(const int &dealt_idx){
     while (true) {
-        uint8_t temp = (*(deck_distribution))(rng);
+        uint8_t rnd = (*(deck_distribution))(rng);
         bool is_valid = true;
         for(const uint8_t &val: dealt_cards){
-            if(val == temp){
+            if(val == rnd){
                 is_valid = false;
                 break;
             }
         }
         if(is_valid){
-            dealt_cards[dealt_idx] = temp;
-            return int_to_card(temp);
+            dealt_cards[dealt_idx] = rnd;
+            return int_to_card(rnd);
         }
     }
 }
