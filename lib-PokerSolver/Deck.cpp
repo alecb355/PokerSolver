@@ -4,8 +4,8 @@
 
 Deck::Deck(){
     board.resize(5);
-    dealt_cards.resize(9, 52);
-    deck_distribution = new std::uniform_int_distribution<uint8_t>(0, 51);
+    dealt_cards.resize(52, 52);
+    deck_distribution = (std::uniform_int_distribution<int>(0, 51));
 }
 
 void Deck::add_flop(char* flop){
@@ -24,11 +24,11 @@ void Deck::add_flop(char* flop){
         else if(s == 'd') suit = 1;
         else if(s == 'h') suit = 2;
         else suit = 3; // if we get weird value for suit gg
+        // std::cout<<"idx: "<<board_idx<<", val: "<<(rank + (13 * (suit)))<<"\n";
         dealt_cards[board_idx] = (rank + (13 * (suit)));
         board[board_idx].rank = rank;
         board[board_idx].suit = suit;
     }
-    std::cout<<"exiting add_flop\n";
 }
 uint8_t parse_rank(const char &r){
     if(r == 'A') return 12;
@@ -51,7 +51,7 @@ Card int_to_card(const uint8_t &val){
 
 Card Deck::deal_card(const int &dealt_idx){
     while (true) {
-        uint8_t rnd = (*(deck_distribution))(rng);
+        uint8_t rnd = (deck_distribution)(rng);
         bool is_valid = true;
         for(const uint8_t &val: dealt_cards){
             if(val == rnd){
@@ -75,30 +75,5 @@ bool Card::operator==(const Card& rhs) const{
 }
 
 Deck::~Deck(){
-    delete deck_distribution;
+    // delete deck_distribution;
 }
-/*
-    Node{
-        hand
-        pot
-        actions
-        children[NUM_ACTIONS]
-    }
-    node[action] == nullptr
-    if(action== bet || raise){
-        node[bet][ammount] == nullptr
-    }
-
-    cfr(pair<int, int>& p1_hand, pair<int, int>& p2_hand, Node& node) // per node
-    map<string, node>
-    string = "AhTs.3c.10s"
-    node = map["AhTs.3c.10s"] 
-    node.action_history
-    while(train){
-        AhAcAs
-        AhAcAs
-    
-    }
-
-
-*/

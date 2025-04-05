@@ -7,6 +7,8 @@
 #include <utility>
 #include <inttypes.h>
 
+#define NUM_CARD_NODES 11
+#define NUM_RAISE_NODES 7
 /*
     thoughts for map:
         - overhead of empty map is 128 bytes, so no way we can have every node contain an empty map
@@ -48,8 +50,21 @@ class Node{
     std::vector<double> regret_sum;
     std::vector<double> strategy;
     std::vector<double> strategy_sum;
-    Node* check_call_node; // child node for either check or call depending on what is available (this should lead to chance node)
-    std::vector<Node*> raise_nodes; // maybe of size 7
+    /*
+        for the check call node, this should be a chance node
+            -can maybe arbitrarily only choose 7 different cards, and hope the average is a somewhat good representation of all possible cards
+                -not sure if this can be random 7 or if we need to intelligently pick the 7.
+        Problem:
+            -is branching factor 14 now or is it +2 to the depth of 7 branching factor?
+
+    
+    */ 
+    std::vector<Node*> card_nodes; 
+    /* 
+        nodes to visit after action is done (if flop or turn). Each index represents a different card being dealt (vector should be size 7 for now)
+        -maybe this should be of size 11, and we only access first 7 depending on whether villain/hero has those cards or not (or else worst case would be 5)
+    */
+    std::vector<Node*> raise_nodes;
     /*
         Following groupings (percentage of pot)
             -getting rid of 0-25 percent because that "should" never be optimal (gto min is 33% usually i think but lets start at 25 in case)
@@ -62,14 +77,6 @@ class Node{
         105-150 (45)
         170-max (rest)
     */
-    int num_valid_actions;
-    // std::vector<Card> hand; // is this necessary
-    // Card turn; // is this necessary
-    // Card river; // is this necessary
-    // int curr_player; // is this necessary
-    // std::vector<Node*> children;
-    // int p1_stack, p2_stack, num_bets, pot_size; // is this necessary
-    // Action prev_action; // is this necessary
     Node();
     Action get_action(const double &realization_weight);
 };

@@ -34,7 +34,7 @@ class Deck{
     std::vector<Card> board;
     std::vector<uint8_t> dealt_cards;
     
-    std::uniform_int_distribution<uint8_t>* deck_distribution;
+    std::uniform_int_distribution<int> deck_distribution;
 
     //uint8_t is only 1 byte for int instead of normal 4 (more efficient).
     void add_flop(char* flop);

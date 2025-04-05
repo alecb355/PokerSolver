@@ -17,6 +17,10 @@ Player::Player(std::string range_str){
     }
 }
 
+Player::~Player(){
+    // nothing else
+}
+
 void Player::add_combos(Deck* deck){
     for (const auto &range_entry: range) { // (11,12) (12,12) (12,11)
         uint8_t i = range_entry[0];

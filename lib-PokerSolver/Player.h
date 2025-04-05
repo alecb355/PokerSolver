@@ -15,9 +15,10 @@ class Player{
     std::vector<std::vector<Card>> possible_hands;
     std::vector<std::vector<uint8_t>> range;
     std::uniform_int_distribution<int> player_rng;
-    Node* current_node; // maybe not necessary
+    // Node* current_node; // maybe not necessary
     // add strategies here
     Player(std::string range_str);
+    ~Player();
     void add_combos(Deck* deck);
 };
 

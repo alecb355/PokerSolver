@@ -1,6 +1,6 @@
 # PokerSolver
 
-## About
+## About (TODO FIX THIS)
 This project (for now) is a limit head's up post-flop Texas Hold 'Em solver. Limit means there are set bet sizes (you dont have the option to bet $5, $5.01, ..., but instead only higher increments like $5, $10, ...). Heads up means there are only two players in the hand, the hero and the villain. Post-flop means it only analyzes after the first 3 cards of board are dealt. 
 
 I hope to eventually expand to no-limit Texas Hold 'Em, as well as other poker variants such as Pot Limit Omaha and 2-7 Draw.
