@@ -21,6 +21,9 @@ class Simulator{
     void initialize_tree();
 };
 
+void traverse_create(Node* node, const int &street, const int &bet_count);
+void traverse_delete(Node* node);
+
 
 
 #endif

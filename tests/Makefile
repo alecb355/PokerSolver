@@ -51,7 +51,7 @@ $(OBJ_DIR):
 
 # Clean up build artifacts
 clean:
-	rm -rf $(OBJ_DIR) $(TARGET) test test_best_hand test_deck
+	rm -rf $(OBJ_DIR) $(TARGET) test test_best_hand test_deck test.o
 
 # Phony targets
 .PHONY: all clean
