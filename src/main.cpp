@@ -1,6 +1,6 @@
-#include "../lib-PokerSolver/Game.h"
-#include "../lib-PokerSolver/Action.h"
-#include "../lib-PokerSolver/Player.h"
+#include "PokerSolver/Game.h"
+#include "PokerSolver/Action.h"
+#include "PokerSolver/Player.h"
 #include <utility>
 #include <iostream>
 #include <string>
@@ -16,8 +16,10 @@ int main(int argc, char** argv){
     Player hero(hero_range);
     Player villain(villain_range);
     Deck deck;
-    deck.add_flop(argv[2]);
+    // std::cout<<"before adding flop\n";
+    deck.add_flop(argv[1]);
+    std::cout<<"added flop\n";
     hero.add_combos(&deck);
-    
+    std::cout<<"added combos\n";
     return 0;
 }

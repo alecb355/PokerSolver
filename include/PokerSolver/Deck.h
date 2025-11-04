@@ -34,21 +34,21 @@ class Deck{
     std::vector<Card> board;
     std::vector<uint8_t> dealt_cards;
     
-    std::uniform_int_distribution<uint8_t>* deck_distribution;
+    std::uniform_int_distribution<int> deck_distribution;
 
     //uint8_t is only 1 byte for int instead of normal 4 (more efficient).
     void add_flop(char* flop);
 
-    Card deal_card(const int &dealt_idx);
+    Card deal_card(const int dealt_idx);
 
     ~Deck();
 };
 
 uint8_t card_to_int(const Card &c);
 
-Card int_to_card(const uint8_t &val);
+Card int_to_card(const uint8_t val);
 
-uint8_t parse_rank(const char &r);
+uint8_t parse_rank(const char r);
 
 
 #endif
