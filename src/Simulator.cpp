@@ -1,5 +1,5 @@
-#include "Simulator.h"
-#include "Game.h"
+#include "PokerSolver/Simulator.h"
+#include "PokerSolver/Game.h"
 #include <iostream>
 
 Simulator::Simulator(char* flop, std::string hero_range, std::string villain_range, bool first){
@@ -51,14 +51,26 @@ void Simulator::initialize_tree(){
 
 */
 
+/*
+    Table on count (with NUM_CARD_NODES = 5):
+
+    street_limit  bet_count_limit   count
+    1               1               
+    1               2               
+    2               1                ~13000
+    2               2                ~4,600,000 (15-ish seconds)
+
+
+*/
+
 const int BET_COUNT_LIMIT = 2;
 
-int count = 0;
+// int count = 0;
 
 // Street value of 0 is flop, 1 is turn, 2 is river
 // BET_COUNT_LIMIT is just to limit the amount of raise and re-raising so the game_tree doesn't grow stupidly fast
 void traverse_create(Node* node, const int &street, const int &bet_count){
-    std::cout<<"Count: "<<count++<<"\n";
+    // std::cout<<"Count: "<<count++<<"\n";
     // No need to create card nodes on river
     if(street < 2){
         for(int i = 0; i < NUM_CARD_NODES; ++i){
@@ -81,10 +93,10 @@ void traverse_create(Node* node, const int &street, const int &bet_count){
 
 void traverse_delete(Node* node){
     if(!node) return;
-    for(int i = 0; i < NUM_CARD_NODES; ++i){
+    for(int i = 0; i < node->card_nodes.size(); ++i){
         traverse_delete(node->card_nodes[i]);
     }
-    for(int i = 0; i < NUM_RAISE_NODES; ++i){
+    for(int i = 0; i < node->raise_nodes.size(); ++i){
         traverse_delete(node->raise_nodes[i]);
     }
     delete node;

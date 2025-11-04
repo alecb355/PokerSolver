@@ -1,4 +1,4 @@
-#include "Node.h"
+#include "PokerSolver/Node.h"
 #include <utility>
 #include <iostream>
 

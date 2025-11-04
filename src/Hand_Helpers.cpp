@@ -1,4 +1,4 @@
-#include "Hand_Helpers.h"
+#include "PokerSolver/Hand_Helpers.h"
 #include <vector>
 #include <inttypes.h>
 #include <cassert>

@@ -1,4 +1,4 @@
-#include "Deck.h"
+#include "PokerSolver/Deck.h"
 #include <cassert>
 #include <iostream>
 
@@ -11,7 +11,7 @@ Deck::Deck(){
 void Deck::add_flop(char* flop){
     // std::cout<<"FLOP SIZE: "<<sizeof(flop)<<"\n";
     // std::cout<<flop[6]<<" "<<flop[7]<<"\n";
-    // assert(sizeof(flop) == 6); // example flop input: AdTc4s which has size 6
+    // std::cout<<"size: " << sizeof(flop) << "\n";
     int rank = 0, suit = 0;
     int board_idx = 0;
     for(int i = 0; i < 5; i += 2, board_idx++){
@@ -30,26 +30,28 @@ void Deck::add_flop(char* flop){
         board[board_idx].suit = suit;
     }
 }
-uint8_t parse_rank(const char &r){
-    if(r == 'A') return 12;
-    else if(r == 'K') return 11;
-    else if(r == 'Q') return 10;
-    else if(r == 'J') return 9;
-    else if(r == 'T') return 8;
-    else return (r - '0' - 2);
+uint8_t parse_rank(const char r){
+     switch (r) {
+        case 'A': return 12;
+        case 'K': return 11;
+        case 'Q': return 10;
+        case 'J': return 9;
+        case 'T': return 8;
+        default:  return (r - '0' - 2);
+    }
 }
 
 uint8_t card_to_int(const Card &c){
     return c.rank + (13 * (c.suit)); 
 }
 
-Card int_to_card(const uint8_t &val){
+Card int_to_card(const uint8_t val){
     int rank = val % 13;
     int suit = val / 13;
     return Card(rank, suit);
 }
 
-Card Deck::deal_card(const int &dealt_idx){
+Card Deck::deal_card(const int dealt_idx){
     while (true) {
         uint8_t rnd = (deck_distribution)(rng);
         bool is_valid = true;

@@ -1,4 +1,4 @@
-#include "Action.h"
+#include "PokerSolver/Action.h"
 
 Action::Action(ActionType new_type, int unsigned new_amount) {
     type = new_type;

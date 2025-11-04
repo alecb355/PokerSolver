@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "PokerSolver/Player.h"
 #include <iostream>
 
 // Range_str in form: AKs, AKo (rank, rank, suited/offsuit)

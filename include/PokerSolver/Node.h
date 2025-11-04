@@ -7,7 +7,7 @@
 #include <utility>
 #include <inttypes.h>
 
-#define NUM_CARD_NODES 7
+#define NUM_CARD_NODES 5
 #define NUM_RAISE_NODES 7
 /*
     thoughts for map:

@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "PokerSolver/Game.h"
 
 Game::Game(Deck* d, Player* h, Player* v){ // should deal all cards
     deck = d;
